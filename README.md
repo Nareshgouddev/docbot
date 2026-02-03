@@ -1,82 +1,92 @@
-# DocuBot AI
+# DocuChat AI
 
-AI-powered PDF analysis platform with vintage aesthetics. Upload PDFs and chat with your documents using advanced AI.
+AI-powered PDF chat with a vintage, minimalist UI. Upload a PDF, extract its text in the browser, and ask questions powered by Groq Llama models.
 
-## Features
+## Highlights
 
-🤖 **AI Chat Interface** - Natural conversation about your document content using Groq's Meta Llama models  
-📄 **PDF Processing** - Advanced text extraction from any PDF document  
-⚡ **Instant Analysis** - Get insights and answers in seconds  
-🎨 **Beautiful Design** - Vintage black & white aesthetic with glass effects  
-📱 **Fully Responsive** - Works perfectly on desktop, tablet, and mobile  
-🔒 **Secure** - Your documents stay private and secure  
+- **PDF-to-text extraction** via PDF.js (client-side)
+- **Conversational Q&A** with document context using Groq SDK
+- **Auto analysis summary** after upload (pages, word count, key info)
+- **Responsive, vintage UI** with Tailwind CSS
+- **Lightweight routing** with History API for `/` and `/chat`
 
 ## Tech Stack
 
-- **Frontend**: React 19 + TypeScript
-- **Styling**: Tailwind CSS with custom vintage design system
-- **AI**: Groq SDK with Meta Llama models
-- **PDF Processing**: PDF.js for browser-based text extraction
-- **Build**: Vite with SWC for fast compilation
-- **Fonts**: Inter + Space Grotesk for modern typography
+- **Frontend**: React 19 (JSX)
+- **Styling**: Tailwind CSS
+- **AI**: Groq SDK (Llama models)
+- **PDF**: pdfjs-dist (browser extraction)
+- **Build**: Vite
 
-## Getting Started
+## Quick Start
 
-1. Install dependencies:
+1. Install dependencies
+
 ```bash
 npm install
 ```
 
-2. Set up environment variables:
+2. Add environment variables
+
 ```bash
 echo "VITE_GROQ_API_KEY=your_groq_api_key_here" > .env
 ```
 
-3. Start development server:
+3. Start the dev server
+
 ```bash
 npm run dev
 ```
 
-4. Visit `http://localhost:5173` to see the app in action!
+4. Open http://localhost:5173
+
+## Environment Variables
+
+| Name              | Required | Description                         |
+| ----------------- | -------- | ----------------------------------- |
+| VITE_GROQ_API_KEY | Yes      | Groq API key used by the client SDK |
 
 ## Routes
 
-- `/` - Landing page with features showcase
-- `/chat` - Chat interface for PDF analysis
+- `/` Landing page
+- `/chat` PDF chat interface
 
 ## Project Structure
 
 ```
 src/
-├── components/          # React components
-│   ├── LandingPage.tsx  # Homepage with aesthetic elements
-│   └── Chat.tsx         # Chat interface (fully responsive)
-├── services/            # API integrations
-│   ├── groqService.ts   # AI chat functionality
-│   └── pdfService.ts    # PDF text extraction
-├── types/               # TypeScript type definitions
-├── utils/               # Utility functions & markdown parser
-└── constants/           # Theme and configuration
+	App.jsx
+	main.jsx
+	index.css
+	components/
+		LandingPage.jsx
+		Chat.jsx
+	services/
+		groqService.js
+		pdfService.js
+	utils/
+		index.js
 ```
 
-## Key Features Implemented
+## Usage Notes
 
-✅ **Responsive Design** - Mobile-first approach with perfect scaling  
-✅ **URL Routing** - Clean `/chat` route navigation  
-✅ **Aesthetic Elements** - Beautiful dotted lines, diagonal elements, and animations  
-✅ **PDF Text Extraction** - Real browser-based PDF processing  
-✅ **AI Integration** - Contextual conversations about document content  
-✅ **Modern Typography** - Compact, readable fonts with perfect spacing  
-✅ **Glass Effects** - Premium visual effects throughout the interface  
-✅ **Button Hover States** - All interactions work perfectly  
+- **PDF size limit**: 15MB
+- **Best results**: PDFs with selectable text (not image-only scans)
+- **Privacy**: text is extracted locally, then sent to Groq for AI responses
 
-## Performance Optimizations
+## Build & Preview
 
-- ⚡ Optimized bundle splitting
-- 🗜️ Terser minification
-- 🧹 Cleaned up 70+ unused dependencies
-- 📦 Minimal build size with maximum functionality
+```bash
+npm run build
+npm run preview
+```
+
+## Troubleshooting
+
+- **Blank responses or errors**: verify VITE_GROQ_API_KEY in .env
+- **Upload fails**: ensure the file is a valid PDF and under 15MB
+- **Scanned PDFs**: OCR is not included; use text-based PDFs for best results
 
 ---
 
-Built with ❤️ using modern web technologies. Perfect for document analysis workflows!
+Built with modern web tools for fast document understanding.
