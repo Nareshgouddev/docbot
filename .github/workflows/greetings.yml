@@ -1,0 +1,68 @@
+name: Welcome New Contributors
+
+on:
+  issues:
+    types: [opened]
+  pull_request:
+    types: [opened]
+  discussion:
+    types: [created]
+
+jobs:
+  welcome:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Greet New Issue Creator
+        if: github.event_name == 'issues'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const issueNumber = context.issue.number;
+            const actor = context.actor;
+            
+            const welcomeMessage = `👋 **Welcome @${actor}!** Thanks for opening this issue.
+            
+            ## 📋 Quick Checklist
+            - [ ] I've searched existing issues (no duplicates)
+            - [ ] I've included steps to reproduce
+            - [ ] I'm using the latest version of DocBot AI
+            
+            I'll review this soon. Meanwhile, feel free to add any additional details!
+            
+            ---
+            🚀 *[DocBot AI](https://github.com/Nareshgouddev/docbot) - Chat With Any PDF Using AI*`;
+            
+            github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: issueNumber,
+              body: welcomeMessage
+            });
+            
+      - name: Greet New PR Creator
+        if: github.event_name == 'pull_request'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const prNumber = context.payload.pull_request.number;
+            const actor = context.actor;
+            
+            const welcomeMessage = `🎉 **Thanks @${actor}!** Your first pull request means a lot to DocBot AI.
+            
+            ## ✅ PR Checklist
+            - [ ] Code follows project style
+            - [ ] Tests added/passed
+            - [ ] Documentation updated
+            - [ ] No breaking changes
+            
+            A maintainer will review this shortly. Thanks for contributing! 🌟
+            
+            ---
+            *Need help? Check the [README](https://github.com/Nareshgouddev/docbot#readme)*`;
+            
+            github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: prNumber,
+              body: welcomeMessage
+            });
