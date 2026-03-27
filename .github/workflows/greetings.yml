@@ -1,68 +1,33 @@
-name: Welcome New Contributors
+name: Greetings
 
 on:
   issues:
     types: [opened]
   pull_request:
     types: [opened]
-  discussion:
-    types: [created]
 
 jobs:
-  welcome:
+  greeting:
     runs-on: ubuntu-latest
+    permissions:
+      issues: write
+      pull-requests: write
     steps:
-      - name: Greet New Issue Creator
-        if: github.event_name == 'issues'
-        uses: actions/github-script@v7
+      - name: Send Greeting
+        uses: actions/first-interaction@v1
         with:
-          script: |
-            const issueNumber = context.issue.number;
-            const actor = context.actor;
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          issue-message: |
+            👋 Thanks for opening your first issue, @${{ github.actor }}!
             
-            const welcomeMessage = `👋 **Welcome @${actor}!** Thanks for opening this issue.
+            Welcome to DocBot AI! 🚀
             
-            ## 📋 Quick Checklist
-            - [ ] I've searched existing issues (no duplicates)
-            - [ ] I've included steps to reproduce
-            - [ ] I'm using the latest version of DocBot AI
+            Please provide:
+            - Steps to reproduce
+            - Expected vs actual behavior
+            - Any error messages
             
-            I'll review this soon. Meanwhile, feel free to add any additional details!
+          pr-message: |
+            🎉 Thanks for your first pull request, @${{ github.actor}}!
             
-            ---
-            🚀 *[DocBot AI](https://github.com/Nareshgouddev/docbot) - Chat With Any PDF Using AI*`;
-            
-            github.rest.issues.createComment({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              issue_number: issueNumber,
-              body: welcomeMessage
-            });
-            
-      - name: Greet New PR Creator
-        if: github.event_name == 'pull_request'
-        uses: actions/github-script@v7
-        with:
-          script: |
-            const prNumber = context.payload.pull_request.number;
-            const actor = context.actor;
-            
-            const welcomeMessage = `🎉 **Thanks @${actor}!** Your first pull request means a lot to DocBot AI.
-            
-            ## ✅ PR Checklist
-            - [ ] Code follows project style
-            - [ ] Tests added/passed
-            - [ ] Documentation updated
-            - [ ] No breaking changes
-            
-            A maintainer will review this shortly. Thanks for contributing! 🌟
-            
-            ---
-            *Need help? Check the [README](https://github.com/Nareshgouddev/docbot#readme)*`;
-            
-            github.rest.issues.createComment({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              issue_number: prNumber,
-              body: welcomeMessage
-            });
+            A maintainer will review your changes soon!
