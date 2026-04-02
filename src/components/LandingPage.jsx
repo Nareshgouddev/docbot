@@ -18,7 +18,11 @@ import {
   Minus,
 } from "lucide-react";
 
-const LandingPage = ({ onNavigateToChat }) => {
+const LandingPage = ({
+  onNavigateToChat,
+  onNavigateToLogin,
+  onNavigateToRegister,
+}) => {
   const features = [
     {
       icon: GraduationCap,
@@ -184,6 +188,15 @@ const LandingPage = ({ onNavigateToChat }) => {
           <div className="hidden sm:flex items-center space-x-4">
             <button className="nav-link text-sm">Features</button>
             <button className="nav-link text-sm">About</button>
+            <button className="nav-link text-sm" onClick={onNavigateToLogin}>
+              Login
+            </button>
+            <button
+              className="btn-secondary text-sm px-4 py-1.5"
+              onClick={onNavigateToRegister}
+            >
+              Register
+            </button>
             <button
               onClick={onNavigateToChat}
               className="btn-primary text-sm px-4 py-1.5"
