@@ -13,7 +13,7 @@
 
 **Stop reading. Start asking.**
 
-*Upload any PDF → Ask questions in plain English → Get instant AI-powered answers*
+_Upload any PDF → Ask questions in plain English → Get instant AI-powered answers_
 
 <p align="center">
   <img width="1492" height="917" alt="Screenshot 2026-03-27 081938" src="https://github.com/user-attachments/assets/77067fa4-db4e-4750-b77b-633a82556a83" />
@@ -46,24 +46,26 @@ DocBot AI is a **browser-based AI application** that lets you have a conversatio
 
 ## 🛠️ Tech Stack
 
-| Layer | Technology |
-|---|---|
-| **Frontend** | React 19 (JSX), Vite |
-| **Styling** | Tailwind CSS |
-| **AI Engine** | Groq SDK (Llama 3 models) |
-| **PDF Processing** | PDF.js (pdfjs-dist) — client-side |
-| **Routing** | History API (custom, no React Router) |
-| **Deployment** | Vercel |
+| Layer              | Technology                            |
+| ------------------ | ------------------------------------- |
+| **Frontend**       | React 19 (JSX), Vite                  |
+| **Styling**        | Tailwind CSS                          |
+| **AI Engine**      | Groq SDK (Llama 3 models)             |
+| **PDF Processing** | PDF.js (pdfjs-dist) — client-side     |
+| **Routing**        | History API (custom, no React Router) |
+| **Deployment**     | Vercel                                |
 
 ---
 
 ## 🚀 Getting Started
 
 ### Prerequisites
+
 - Node.js 18+ installed
 - A free [Groq API Key](https://console.groq.com/) (takes 2 minutes)
 
 ### Installation
+
 ```bash
 # 1. Clone the repo
 git clone https://github.com/Nareshgouddev/docbot.git
@@ -73,15 +75,20 @@ cd docbot
 npm install
 
 # 3. Set up environment variables
-echo "VITE_GROQ_API_KEY=your_groq_api_key_here" > .env
+cp .env.example .env
 
-# 4. Start the dev server
+# 4. Add your keys in .env
+# - Groq key
+# - Firebase web app config keys
+
+# 5. Start the dev server
 npm run dev
 ```
 
 Open [http://localhost:5173](http://localhost:5173) in your browser.
 
 ### Build for Production
+
 ```bash
 npm run build
 npm run preview
@@ -90,6 +97,7 @@ npm run preview
 ---
 
 ## 📁 Project Structure
+
 ```
 docbot/
 ├── public/               # Static assets
@@ -116,9 +124,15 @@ docbot/
 
 ## ⚙️ Environment Variables
 
-| Variable | Required | Description |
-|---|---|---|
-| `VITE_GROQ_API_KEY` | ✅ Yes | Your Groq API key from [console.groq.com](https://console.groq.com/) |
+| Variable                            | Required | Description                                                          |
+| ----------------------------------- | -------- | -------------------------------------------------------------------- |
+| `VITE_GROQ_API_KEY`                 | ✅ Yes   | Your Groq API key from [console.groq.com](https://console.groq.com/) |
+| `VITE_FIREBASE_API_KEY`             | ✅ Yes   | Firebase web API key from Project Settings                           |
+| `VITE_FIREBASE_AUTH_DOMAIN`         | ✅ Yes   | Usually `your-project.firebaseapp.com`                               |
+| `VITE_FIREBASE_PROJECT_ID`          | ✅ Yes   | Firebase project id                                                  |
+| `VITE_FIREBASE_STORAGE_BUCKET`      | ✅ Yes   | Usually `your-project.appspot.com`                                   |
+| `VITE_FIREBASE_MESSAGING_SENDER_ID` | ✅ Yes   | Firebase sender id                                                   |
+| `VITE_FIREBASE_APP_ID`              | ✅ Yes   | Firebase app id from web app config                                  |
 
 > ⚠️ Never commit your `.env` file. It's already in `.gitignore`.
 
@@ -136,6 +150,7 @@ docbot/
 ## 🤝 Contributing
 
 Contributions are welcome! Here's how:
+
 ```bash
 # 1. Fork the project
 # 2. Create your feature branch
@@ -151,6 +166,7 @@ git push origin feature/AmazingFeature
 ```
 
 **Ideas for contributions:**
+
 - OCR support for scanned PDFs
 - Chat history / conversation memory
 - Multiple PDF upload support
