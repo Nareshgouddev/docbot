@@ -114,7 +114,9 @@ const About = ({
                 <div className="w-7 h-7 rounded-full bg-vintage-gray-100 flex items-center justify-center text-xs font-semibold text-vintage-black">
                   2
                 </div>
-                <p>Ask questions in plain language like you would to a tutor.</p>
+                <p>
+                  Ask questions in plain language like you would to a tutor.
+                </p>
               </div>
               <div className="flex items-start gap-3">
                 <div className="w-7 h-7 rounded-full bg-vintage-gray-100 flex items-center justify-center text-xs font-semibold text-vintage-black">

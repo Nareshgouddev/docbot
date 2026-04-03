@@ -199,10 +199,7 @@ const LandingPage = ({
             >
               Features
             </button>
-            <button
-              className="nav-link text-sm"
-              onClick={onNavigateToAbout}
-            >
+            <button className="nav-link text-sm" onClick={onNavigateToAbout}>
               About
             </button>
             <button className="nav-link text-sm" onClick={onNavigateToLogin}>
