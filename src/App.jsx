@@ -3,6 +3,7 @@ import LandingPage from "./components/LandingPage";
 import Chat from "./components/Chat";
 import Login from "./components/Login";
 import Register from "./components/Register";
+import About from "./components/About";
 import {
   getFirebaseSetupError,
   isFirebaseConfigured,
@@ -32,13 +33,13 @@ const App = () => {
 
   useEffect(() => {
     // Handle initial route
-    const validRoutes = ["/", "/chat", "/login", "/register"];
+    const validRoutes = ["/", "/about", "/chat", "/login", "/register"];
     const path = window.location.pathname;
     setCurrentRoute(validRoutes.includes(path) ? path : "/");
 
     // Listen for browser back/forward navigation
     const handlePopState = () => {
-      const validRoutes = ["/", "/chat", "/login", "/register"];
+      const validRoutes = ["/", "/about", "/chat", "/login", "/register"];
       const path = window.location.pathname;
       setCurrentRoute(validRoutes.includes(path) ? path : "/");
     };
@@ -60,6 +61,11 @@ const App = () => {
   const navigateToLogin = () => {
     window.history.pushState({}, "", "/login");
     setCurrentRoute("/login");
+  };
+
+  const navigateToAbout = () => {
+    window.history.pushState({}, "", "/about");
+    setCurrentRoute("/about");
   };
 
   const navigateToRegister = () => {
@@ -97,6 +103,7 @@ const App = () => {
   const shouldShowLogin =
     currentRoute === "/login" || (currentRoute === "/chat" && !isAuthenticated);
   const shouldShowRegister = currentRoute === "/register" && !isAuthenticated;
+  const shouldShowAbout = currentRoute === "/about";
 
   return (
     <div className="min-h-screen bg-vintage-white">
@@ -114,11 +121,19 @@ const App = () => {
           onNavigateToLogin={navigateToLogin}
           onRegisterSuccess={navigateToChat}
         />
+      ) : shouldShowAbout ? (
+        <About
+          onNavigateToLanding={navigateToLanding}
+          onNavigateToChat={navigateToChat}
+          onNavigateToLogin={navigateToLogin}
+          onNavigateToRegister={navigateToRegister}
+        />
       ) : (
         <LandingPage
           onNavigateToChat={navigateToChat}
           onNavigateToLogin={navigateToLogin}
           onNavigateToRegister={navigateToRegister}
+          onNavigateToAbout={navigateToAbout}
         />
       )}
     </div>

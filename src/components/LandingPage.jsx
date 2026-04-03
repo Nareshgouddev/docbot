@@ -10,7 +10,6 @@ import {
   Code,
   Brain,
   Lock,
-  CheckCircle2,
   AlertCircle,
   Check,
   HelpCircle,
@@ -22,7 +21,15 @@ const LandingPage = ({
   onNavigateToChat,
   onNavigateToLogin,
   onNavigateToRegister,
+  onNavigateToAbout,
 }) => {
+  const scrollToSection = (sectionId) => {
+    const section = document.getElementById(sectionId);
+    if (section) {
+      section.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  };
+
   const features = [
     {
       icon: GraduationCap,
@@ -186,8 +193,18 @@ const LandingPage = ({
             </span>
           </div>
           <div className="hidden sm:flex items-center space-x-4">
-            <button className="nav-link text-sm">Features</button>
-            <button className="nav-link text-sm">About</button>
+            <button
+              className="nav-link text-sm"
+              onClick={() => scrollToSection("features")}
+            >
+              Features
+            </button>
+            <button
+              className="nav-link text-sm"
+              onClick={onNavigateToAbout}
+            >
+              About
+            </button>
             <button className="nav-link text-sm" onClick={onNavigateToLogin}>
               Login
             </button>
@@ -277,7 +294,10 @@ const LandingPage = ({
       </div>
 
       {/* Features Section - Fully Responsive Grid */}
-      <section className="relative z-10 py-12 sm:py-16 lg:py-20 px-4 sm:px-6 lg:px-8">
+      <section
+        id="features"
+        className="relative z-10 py-12 sm:py-16 lg:py-20 px-4 sm:px-6 lg:px-8"
+      >
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-8 sm:mb-12">
             <h2 className="text-xl sm:text-2xl md:text-3xl font-display font-semibold tracking-vintage mb-3">
@@ -319,6 +339,7 @@ const LandingPage = ({
           </div>
         </div>
       </section>
+
       {/* Problems We Solve Section */}
       <section className="relative z-10 py-12 sm:py-16 px-4 sm:px-6 lg:px-8 bg-vintage-gray-50/30">
         <div className="max-w-4xl mx-auto">
@@ -722,7 +743,11 @@ const LandingPage = ({
               <ul className="space-y-2 text-sm text-vintage-gray-600">
                 <li>
                   <a
-                    href="#"
+                    href="/about"
+                    onClick={(event) => {
+                      event.preventDefault();
+                      onNavigateToAbout();
+                    }}
                     className="hover:text-vintage-black transition-colors"
                   >
                     About Us
