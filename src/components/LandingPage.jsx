@@ -210,7 +210,10 @@ const LandingPage = ({
               </button>
             ) : (
               <>
-                <button className="nav-link text-sm" onClick={onNavigateToLogin}>
+                <button
+                  className="nav-link text-sm"
+                  onClick={onNavigateToLogin}
+                >
                   Login
                 </button>
                 <button
