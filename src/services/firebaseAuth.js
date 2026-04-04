@@ -86,6 +86,10 @@ export const getFirebaseFriendlyError = (error) => {
     "auth/too-many-requests": "Too many attempts. Please wait and try again.",
     "auth/network-request-failed":
       "Network error. Check your connection and retry.",
+    "auth/configuration-not-found":
+      "Firebase Auth is not enabled for this project. In Firebase Console, go to Authentication > Sign-in method and enable Email/Password, then verify your web app config values.",
+    "auth/operation-not-allowed":
+      "This sign-in method is disabled in Firebase Console. Enable Email/Password under Authentication > Sign-in method.",
   };
 
   return (
