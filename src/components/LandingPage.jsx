@@ -22,6 +22,8 @@ const LandingPage = ({
   onNavigateToLogin,
   onNavigateToRegister,
   onNavigateToAbout,
+  onLogout,
+  isAuthenticated,
 }) => {
   const scrollToSection = (sectionId) => {
     const section = document.getElementById(sectionId);
@@ -202,15 +204,23 @@ const LandingPage = ({
             <button className="nav-link text-sm" onClick={onNavigateToAbout}>
               About
             </button>
-            <button className="nav-link text-sm" onClick={onNavigateToLogin}>
-              Login
-            </button>
-            <button
-              className="btn-secondary text-sm px-4 py-1.5"
-              onClick={onNavigateToRegister}
-            >
-              Register
-            </button>
+            {isAuthenticated ? (
+              <button className="nav-link text-sm" onClick={onLogout}>
+                Logout
+              </button>
+            ) : (
+              <>
+                <button className="nav-link text-sm" onClick={onNavigateToLogin}>
+                  Login
+                </button>
+                <button
+                  className="btn-secondary text-sm px-4 py-1.5"
+                  onClick={onNavigateToRegister}
+                >
+                  Register
+                </button>
+              </>
+            )}
             <button
               onClick={onNavigateToChat}
               className="btn-primary text-sm px-4 py-1.5"
@@ -219,12 +229,21 @@ const LandingPage = ({
             </button>
           </div>
           <div className="sm:hidden">
-            <button
-              onClick={onNavigateToChat}
-              className="btn-primary text-sm px-3 py-1.5"
-            >
-              Start
-            </button>
+            {isAuthenticated ? (
+              <button
+                onClick={onLogout}
+                className="btn-secondary text-sm px-3 py-1.5"
+              >
+                Logout
+              </button>
+            ) : (
+              <button
+                onClick={onNavigateToChat}
+                className="btn-primary text-sm px-3 py-1.5"
+              >
+                Start
+              </button>
+            )}
           </div>
         </div>
       </nav>

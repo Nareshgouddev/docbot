@@ -7,6 +7,7 @@ import About from "./components/About";
 import {
   getFirebaseSetupError,
   isFirebaseConfigured,
+  logoutUser,
   onAuthStateChangedListener,
 } from "./services/firebaseAuth";
 
@@ -73,6 +74,11 @@ const App = () => {
     setCurrentRoute("/register");
   };
 
+  const handleLogout = async () => {
+    await logoutUser();
+    navigateToLanding();
+  };
+
   if (authLoading) {
     return (
       <div className="min-h-screen bg-vintage-white flex items-center justify-center p-6">
@@ -127,6 +133,8 @@ const App = () => {
           onNavigateToChat={navigateToChat}
           onNavigateToLogin={navigateToLogin}
           onNavigateToRegister={navigateToRegister}
+          onLogout={handleLogout}
+          isAuthenticated={isAuthenticated}
         />
       ) : (
         <LandingPage
@@ -134,6 +142,8 @@ const App = () => {
           onNavigateToLogin={navigateToLogin}
           onNavigateToRegister={navigateToRegister}
           onNavigateToAbout={navigateToAbout}
+          onLogout={handleLogout}
+          isAuthenticated={isAuthenticated}
         />
       )}
     </div>
